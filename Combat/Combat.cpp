@@ -6,6 +6,7 @@
 #include <string>
 #include <iostream>
 #include <utility>
+#include <algorithm>
 
 using namespace std;
 
@@ -70,35 +71,73 @@ Character* Combat::getTarget(Character* attacker) {
     //TODO: Handle this exception
     return nullptr;
 }
+int round = 1;
+int playerDefenseTurn = 0;
+int enemyDefenseTurn = 0;
+
 
 void Combat::doCombat() {
     cout<< "Inicio del combate" << endl;
     combatPrep();
     while(participants.size() > 1){
         vector<Character*>::iterator it = participants.begin();
+        cout<<"Round " << round << endl;
         while(it != participants.end()) {
-            Character* target = nullptr;
-            if((*it)->getIsPlayer()) {
+            Character *target = nullptr;
+            if ((*it)->getIsPlayer()) {
                 // TODO: Tarea Jugador debe poder elegir entre atacar y defender
-                target = ((Player *) *it)->selectTarget(enemies);
+                if (playerDefenseTurn == 1) {
+                    (*it)->resetDefense();
+                    playerDefenseTurn = 0;
+                }
+                cout << "\nTurno de " << (*it)->getName() << endl;
+                int action;
+                cout << "Selecciona tu accion" << endl;
+                cout << "1. Atacar" << endl;
+                cout << "2. Defender" << endl;
+                cin >> action;
+                switch (action) {
+                    case 1:
+                        target = ((Player *) *it)->selectTarget(enemies);
+                        (*it)->doAttack(target);
+                        break;
+                    case 2:
+                        target = ((Player *) *it)->selectTarget(enemies);
+                        (*it)->defend();
+                        playerDefenseTurn = 1;
+                        break;
+                    default:
+                        cout << "Que 1 o 2!!" << endl;
+                        break;
+                }
             } else {
-                // TODO: si el enemigo tiene menos del 15% de vida, hay una probabilidad del 40% de que se defienda
+                if (enemyDefenseTurn == 1) {
+                    (*it)->resetDefense();
+                    enemyDefenseTurn = 0;
+                }
+                cout << "\nTurno del contrincante " << (*it)->getName() << "!" << endl;
                 target = ((Enemy *) *it)->selectTarget(partyMembers);
+                if ((*it)->getHealth() < ((*it)->getOriginalHealth() * 0.60) && rand() % 100 < 40) {
+                    (*it)->defend();
+                    cout << "El " << (*it)->getName() << " hizo trampa" << endl;
+                    enemyDefenseTurn = 1;
+                } else {
+                    (*it)->doAttack(target);
+                }
             }
-            (*it)->doAttack(target);
             if(target->getHealth() <= 0){
                 it = participants.erase(remove(participants.begin(), participants.end(), target), participants.end());
                 if(target->getIsPlayer()){
                     partyMembers.erase(remove(partyMembers.begin(), partyMembers.end(), target), partyMembers.end());
                     if(partyMembers.size() == 0){
-                        cout << "Game Over" << endl;
+                        cout << "Has perdido" << endl;
                         return;
                     }
                 } else {
-                    cout << "You killed enemy " << target->getName() << endl;
+                    cout << "Mataste a " << target->getName() << endl;
                     enemies.erase(remove(enemies.begin(), enemies.end(), target), enemies.end());
                     if(enemies.size() == 0){
-                        cout << "Victory" << endl;
+                        cout << "Felicidades ahora vete" << endl;
                         return;
                     }
                 }
@@ -106,5 +145,6 @@ void Combat::doCombat() {
                 it++;
             }
         }
+        round++;
     }
 }
