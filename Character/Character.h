@@ -17,6 +17,7 @@ protected:
     int speed;
     bool isPlayer;
     int originalHealth;
+    bool isDefending = false;
 
 public:
     Character(string _name, int _health, int _attack, int _defense, int _speed, bool _isPlayer);
@@ -28,7 +29,8 @@ public:
     //Incrementar la defensa un 20% solo por el turno actual
     void defend();
     void resetDefense();
-
+    void resetPriority();
+    void givePriority();
     bool flee(Character* target);
     string getName();
     int getHealth();
@@ -36,6 +38,7 @@ public:
     int getAttack();
     int getDefense();
     bool getIsPlayer();
+    bool getIsDefending();
     int getSpeed();
     string toString();
 };

@@ -145,5 +145,30 @@ CMakeFiles/rpg.dir/main.cpp.obj: \
  C:/msys64/mingw64/include/c++/13.2.0/bits/stl_vector.h \
  C:/msys64/mingw64/include/c++/13.2.0/bits/stl_bvector.h \
  C:/msys64/mingw64/include/c++/13.2.0/bits/vector.tcc \
+ C:/Users/amezc/Documents/23310158_RPG\ por\ turnos_2P/2P-RPG/Combat/Action.h \
+ C:/msys64/mingw64/include/c++/13.2.0/functional \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/std_function.h \
+ C:/msys64/mingw64/include/c++/13.2.0/unordered_map \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/unordered_map.h \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/hashtable.h \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/hashtable_policy.h \
+ C:/msys64/mingw64/include/c++/13.2.0/ext/aligned_buffer.h \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/enable_special_members.h \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/node_handle.h \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/erase_if.h \
+ C:/msys64/mingw64/include/c++/13.2.0/array \
+ C:/msys64/mingw64/include/c++/13.2.0/compare \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/stl_algo.h \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/algorithmfwd.h \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/stl_heap.h \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/uniform_int_dist.h \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/stl_tempbuf.h \
+ C:/Users/amezc/Documents/23310158_RPG\ por\ turnos_2P/2P-RPG/Character/Character.h \
+ C:/Users/amezc/Documents/23310158_RPG\ por\ turnos_2P/2P-RPG/Combat/Action.h \
  C:\Users\amezc\Documents\23310158_RPG\ por\ turnos_2P\2P-RPG\Combat/Combat.h \
- C:/Users/amezc/Documents/23310158_RPG\ por\ turnos_2P/2P-RPG/Character/Character.h
+ C:/Users/amezc/Documents/23310158_RPG\ por\ turnos_2P/2P-RPG/Character/Character.h \
+ C:/msys64/mingw64/include/c++/13.2.0/queue \
+ C:/msys64/mingw64/include/c++/13.2.0/deque \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/stl_deque.h \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/deque.tcc \
+ C:/msys64/mingw64/include/c++/13.2.0/bits/stl_queue.h

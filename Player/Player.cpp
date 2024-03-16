@@ -18,10 +18,21 @@ void Player::doAttack(Character *target) {
 
 void Player::takeDamage(int damage) {
     int trueDamage = damage - defense;
+    if (trueDamage < 0) {
+        trueDamage = 0;
+    }
 
     health-= trueDamage;
+    if(health <= 0) {
+        health = 0;
+    }
 
-    cout << name << " took " << trueDamage << " damage!" << endl;
+    cout << name << " ha recibido " << trueDamage << " de danio!" << endl;
+    cout << name << " le queda " << health << " de vida!" << endl;
+
+    if(health <= 0) {
+        cout << name << " has been defeated!" << endl;
+    }
 
 }
 
@@ -47,4 +58,49 @@ Character* Player::selectTarget(vector<Enemy*> possibleTargets) {
     //TODO: Add input validation
     cin >> selectedTarget;
     return possibleTargets[selectedTarget];
+}
+
+Action Player::takeAction(vector<Enemy*> enemies) {
+    int action = 0;
+    while (true) {
+        cout << getName() << ", te toca!" << endl
+             << "Selecciona una accion: " << endl
+             << "1. Attacar" << endl
+             << "2. Defender" << endl;
+        cin >> action;
+        if (action == 1 || action == 2) {
+            break;
+        } else {
+            cout << "Accion no valida" << endl;
+        }
+    }
+    Action currentAction;
+    Character* target = nullptr;
+
+    if (getIsDefending()) {
+        resetDefense();
+    }
+
+    switch(action) {
+        case 1:
+            target = selectTarget(enemies);
+            currentAction.target = target;
+            currentAction.action = [this, target](){
+                doAttack(target);
+            };
+            currentAction.speed = getSpeed();
+            break;
+        case 2:
+            currentAction.target = this;
+            currentAction.action = [this](){
+                defend();
+            };
+            currentAction.speed = DEFENSE_SPEED_PRIORITY;
+            break;
+        default:
+            cout << "Accion no valida" << endl;
+            break;
+    }
+
+    return currentAction;
 }

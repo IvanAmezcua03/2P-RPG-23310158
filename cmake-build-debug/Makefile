@@ -152,6 +152,30 @@ Character/Character.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\rpg.dir\build.make CMakeFiles/rpg.dir/Character/Character.cpp.s
 .PHONY : Character/Character.cpp.s
 
+Combat/Action.obj: Combat/Action.cpp.obj
+.PHONY : Combat/Action.obj
+
+# target to build an object file
+Combat/Action.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rpg.dir\build.make CMakeFiles/rpg.dir/Combat/Action.cpp.obj
+.PHONY : Combat/Action.cpp.obj
+
+Combat/Action.i: Combat/Action.cpp.i
+.PHONY : Combat/Action.i
+
+# target to preprocess a source file
+Combat/Action.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rpg.dir\build.make CMakeFiles/rpg.dir/Combat/Action.cpp.i
+.PHONY : Combat/Action.cpp.i
+
+Combat/Action.s: Combat/Action.cpp.s
+.PHONY : Combat/Action.s
+
+# target to generate assembly for a file
+Combat/Action.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\rpg.dir\build.make CMakeFiles/rpg.dir/Combat/Action.cpp.s
+.PHONY : Combat/Action.cpp.s
+
 Combat/Combat.obj: Combat/Combat.cpp.obj
 .PHONY : Combat/Combat.obj
 
@@ -260,6 +284,9 @@ help:
 	@echo ... Character/Character.obj
 	@echo ... Character/Character.i
 	@echo ... Character/Character.s
+	@echo ... Combat/Action.obj
+	@echo ... Combat/Action.i
+	@echo ... Combat/Action.s
 	@echo ... Combat/Combat.obj
 	@echo ... Combat/Combat.i
 	@echo ... Combat/Combat.s

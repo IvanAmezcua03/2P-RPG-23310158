@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/amezc/Documents/23310158_RPG por turnos_2P/2P-RPG/Character/Character.cpp" "CMakeFiles/rpg.dir/Character/Character.cpp.obj" "gcc" "CMakeFiles/rpg.dir/Character/Character.cpp.obj.d"
+  "C:/Users/amezc/Documents/23310158_RPG por turnos_2P/2P-RPG/Combat/Action.cpp" "CMakeFiles/rpg.dir/Combat/Action.cpp.obj" "gcc" "CMakeFiles/rpg.dir/Combat/Action.cpp.obj.d"
   "C:/Users/amezc/Documents/23310158_RPG por turnos_2P/2P-RPG/Combat/Combat.cpp" "CMakeFiles/rpg.dir/Combat/Combat.cpp.obj" "gcc" "CMakeFiles/rpg.dir/Combat/Combat.cpp.obj.d"
   "C:/Users/amezc/Documents/23310158_RPG por turnos_2P/2P-RPG/Enemy/Enemy.cpp" "CMakeFiles/rpg.dir/Enemy/Enemy.cpp.obj" "gcc" "CMakeFiles/rpg.dir/Enemy/Enemy.cpp.obj.d"
   "C:/Users/amezc/Documents/23310158_RPG por turnos_2P/2P-RPG/Player/Player.cpp" "CMakeFiles/rpg.dir/Player/Player.cpp.obj" "gcc" "CMakeFiles/rpg.dir/Player/Player.cpp.obj.d"

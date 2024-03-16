@@ -20,6 +20,7 @@ string Character::getName() {
 int Character::getHealth() {
     return health;
 }
+
 int Character::getOriginalHealth() {
     return originalHealth;
 }
@@ -44,6 +45,10 @@ bool Character::getIsPlayer() {
     return isPlayer;
 }
 
+bool Character::getIsDefending() {
+    return isDefending;
+}
+
 bool Character::flee(Character*target) {
     if(this->speed > target->speed)
         return true;
@@ -51,9 +56,21 @@ bool Character::flee(Character*target) {
     int chance = rand() % 100;
     return chance > 30;
 }
+
 void Character::defend() {
     defense = defense * 2;
+    isDefending = true;
 }
-void Character ::resetDefense() {
+
+void Character::givePriority() {
+    speed = speed * 100;
+}
+
+void Character::resetPriority() {
+    speed = speed / 100;
+}
+
+void Character::resetDefense() {
     defense = defense / 2;
+    isDefending = false;
 }

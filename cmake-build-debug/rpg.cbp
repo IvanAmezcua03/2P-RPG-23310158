@@ -86,6 +86,12 @@
 		<Unit filename="C:/Users/amezc/Documents/23310158_RPG por turnos_2P/2P-RPG/Character/Character.h">
 			<Option target="rpg"/>
 		</Unit>
+		<Unit filename="C:/Users/amezc/Documents/23310158_RPG por turnos_2P/2P-RPG/Combat/Action.cpp">
+			<Option target="rpg"/>
+		</Unit>
+		<Unit filename="C:/Users/amezc/Documents/23310158_RPG por turnos_2P/2P-RPG/Combat/Action.h">
+			<Option target="rpg"/>
+		</Unit>
 		<Unit filename="C:/Users/amezc/Documents/23310158_RPG por turnos_2P/2P-RPG/Combat/Combat.cpp">
 			<Option target="rpg"/>
 		</Unit>

@@ -71,80 +71,64 @@ Character* Combat::getTarget(Character* attacker) {
     //TODO: Handle this exception
     return nullptr;
 }
-int round = 1;
-int playerDefenseTurn = 0;
-int enemyDefenseTurn = 0;
-
 
 void Combat::doCombat() {
-    cout<< "Inicio del combate" << endl;
+    cout << "Que empiece el combate!" << endl;
     combatPrep();
-    while(participants.size() > 1){
-        vector<Character*>::iterator it = participants.begin();
-        cout<<"Round " << round << endl;
-        while(it != participants.end()) {
-            Character *target = nullptr;
-            if ((*it)->getIsPlayer()) {
-                // TODO: Tarea Jugador debe poder elegir entre atacar y defender
-                if (playerDefenseTurn == 1) {
-                    (*it)->resetDefense();
-                    playerDefenseTurn = 0;
-                }
-                cout << "\nTurno de " << (*it)->getName() << endl;
-                int action;
-                cout << "Selecciona tu accion" << endl;
-                cout << "1. Atacar" << endl;
-                cout << "2. Defender" << endl;
-                cin >> action;
-                switch (action) {
-                    case 1:
-                        target = ((Player *) *it)->selectTarget(enemies);
-                        (*it)->doAttack(target);
-                        break;
-                    case 2:
-                        target = ((Player *) *it)->selectTarget(enemies);
-                        (*it)->defend();
-                        playerDefenseTurn = 1;
-                        break;
-                    default:
-                        cout << "Que 1 o 2!!" << endl;
-                        break;
-                }
-            } else {
-                if (enemyDefenseTurn == 1) {
-                    (*it)->resetDefense();
-                    enemyDefenseTurn = 0;
-                }
-                cout << "\nTurno del contrincante " << (*it)->getName() << "!" << endl;
-                target = ((Enemy *) *it)->selectTarget(partyMembers);
-                if ((*it)->getHealth() < ((*it)->getOriginalHealth() * 0.60) && rand() % 100 < 40) {
-                    (*it)->defend();
-                    cout << "El " << (*it)->getName() << " hizo trampa" << endl;
-                    enemyDefenseTurn = 1;
-                } else {
-                    (*it)->doAttack(target);
-                }
-            }
-            if(target->getHealth() <= 0){
-                it = participants.erase(remove(participants.begin(), participants.end(), target), participants.end());
-                if(target->getIsPlayer()){
-                    partyMembers.erase(remove(partyMembers.begin(), partyMembers.end(), target), partyMembers.end());
-                    if(partyMembers.size() == 0){
-                        cout << "Has perdido" << endl;
-                        return;
-                    }
-                } else {
-                    cout << "Mataste a " << target->getName() << endl;
-                    enemies.erase(remove(enemies.begin(), enemies.end(), target), enemies.end());
-                    if(enemies.size() == 0){
-                        cout << "Felicidades ahora vete" << endl;
-                        return;
-                    }
-                }
-            } else {
-                it++;
-            }
-        }
+    int round = 1;
+    //Este while representa las rondas del combate
+    while (enemies.size() > 0 && partyMembers.size() > 0) {
+        cout << "\nRound " << round << endl;
+        vector<Character *>::iterator it = participants.begin();
+        registerActions(it);
+        executeActions(it);
+
         round++;
+    }
+
+    if(enemies.empty()) {
+        cout << "Haz ganado" << endl;
+    } else {
+        cout << "Haz perdido!" << endl;
+
+    }
+}
+
+void Combat::executeActions(vector<Character*>::iterator participant) {
+    while(!actionQueue.empty()) {
+        Action currentAction = actionQueue.top();
+        currentAction.action();
+        actionQueue.pop();
+
+        //Check if there are any dead characters
+        checkParticipantStatus(*participant);
+        checkParticipantStatus(currentAction.target);
+    }
+}
+
+void Combat::checkParticipantStatus(Character *participant) {
+    if(participant->getHealth() <= 0) {
+        if(participant->getIsPlayer()) {
+            partyMembers.erase(remove(partyMembers.begin(), partyMembers.end(), participant), partyMembers.end());
+        } else {
+            enemies.erase(remove(enemies.begin(), enemies.end(), participant), enemies.end());
+        }
+        participants.erase(remove(participants.begin(), participants.end(), participant), participants.end());
+    }
+}
+
+void Combat::registerActions(vector<Character*>::iterator participantIterator) {
+    //Este while representa el turno de cada participante
+    //La eleccion que cada personaje elije en su turno
+    while(participantIterator != participants.end()) {
+        if((*participantIterator)->getIsPlayer()) {
+            Action playerAction = ((Player*) *participantIterator)->takeAction(enemies);
+            actionQueue.push(playerAction);
+        } else {
+            Action enemyAction = ((Enemy*) *participantIterator)->takeAction(partyMembers);
+            actionQueue.push(enemyAction);
+        }
+
+        participantIterator++;
     }
 }
