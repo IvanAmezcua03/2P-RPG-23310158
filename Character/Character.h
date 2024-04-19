@@ -10,7 +10,7 @@ using namespace std;
 
 class Character {
 protected:
-    string name;
+    char name[50];
     int health;
     int attack;
     int defense;
@@ -20,7 +20,7 @@ protected:
     bool isDefending = false;
 
 public:
-    Character(string _name, int _health, int _attack, int _defense, int _speed, bool _isPlayer);
+    Character(char* _name, int _health, int _attack, int _defense, int _speed, bool _isPlayer);
 
     virtual void doAttack(Character *target) = 0;
     virtual void takeDamage(int damage) = 0;
@@ -32,7 +32,7 @@ public:
     void resetPriority();
     void givePriority();
     bool flee(Character* target);
-    string getName();
+    const char* getName();
     int getHealth();
     int getOriginalHealth();
     int getAttack();

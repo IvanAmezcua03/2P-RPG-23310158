@@ -3,8 +3,11 @@
 //
 
 #include "Character.h"
-Character::Character(string _name, int _health, int _attack, int _defense, int _speed, bool _isPlayer) {
-    name = _name;
+Character::Character(char*_name, int _health, int _attack, int _defense, int _speed, bool _isPlayer) {
+
+    for (int i = 0; i < 50; i++) {
+        name[i] = _name[i];
+}
     health = _health;
     attack = _attack;
     defense = _defense;
@@ -13,7 +16,7 @@ Character::Character(string _name, int _health, int _attack, int _defense, int _
     originalHealth = _health;
 }
 
-string Character::getName() {
+const char* Character::getName() {
     return name;
 }
 
@@ -38,7 +41,7 @@ int Character::getSpeed() {
 }
 
 string Character::toString() {
-    return "Name: " + name + "\nHealth: " + to_string(health) + "\nAttack: " + to_string(attack) + "\nDefense: " + to_string(defense) + "\nSpeed: " + to_string(speed);
+    return "Name: " + string(name) + "\nHealth: " + to_string(health) + "\nAttack: " + to_string(attack) + "\nDefense: " + to_string(defense) + "\nSpeed: " + to_string(speed);
 }
 
 bool Character::getIsPlayer() {
