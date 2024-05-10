@@ -101,6 +101,9 @@ void Combat::doCombat() {
         cin >> playAgain;
 
         if(playAgain == 'n') {
+            for(auto player : partyMembers) {
+                player->serialize("savedPlayer.txt");
+            }
             combat = false;
         } else {
             participants.clear();

@@ -24,11 +24,13 @@ private:
 
 public:
     Player(char* _name, int _health, int _attack, int _defense, int _speed);
+    Player(char* _name, int _health, int _attack, int _defense, int _speed, bool isPlayer, int _level, int _experience);
     void doAttack(Character *target) override;
     void takeDamage(int damage) override;
     Character* selectTarget(vector<Enemy*> possibleTargets);
     Action takeAction(vector<Enemy*> enemies);
-
+    void serialize(const char* filename);
+    void unserialize(const char* filename);
     void gainExperience(int exp);
 
     //TODO: Implement use object
