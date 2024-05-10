@@ -72,8 +72,23 @@ void Character::givePriority() {
 void Character::resetPriority() {
     speed = speed / 100;
 }
+void Character::heal(){
+    health = originalHealth;
+}
 
 void Character::resetDefense() {
     defense = defense / 2;
     isDefending = false;
+}
+
+void Character::upgradeAttack() {
+    attack = attack + 2;
+}
+
+void Character::upgradeDefense() {
+    defense = defense + 2;
+}
+
+void Character::upgradeSpeed() {
+    speed = speed + 3;
 }

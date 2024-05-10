@@ -6,8 +6,8 @@
 int main() {
     Player *player = new Player("billy goat", 100, 20, 5, 10);
     Player *player2 = new Player("Ivan", 110, 12, 5, 9);
-    Enemy *enemy = new Enemy("Tolendo", 35, 15, 4, 20, 10);
-    Enemy *enemy2 = new Enemy("Furcio", 70, 30, 4, 5, 30);
+    Enemy *enemy = new Enemy("Tolendo", 10, 15, 4, 20, 100);
+    Enemy *enemy2 = new Enemy("Furcio", 10, 30, 4, 5, 300);
 
     vector<Character*> participants;
 

@@ -118,4 +118,7 @@ CMakeFiles/rpg.dir/Combat/Action.cpp.obj: \
  C:/msys64/mingw64/include/c++/13.2.0/cstdio \
  C:/msys64/mingw64/include/c++/13.2.0/cerrno \
  C:/msys64/mingw64/include/c++/13.2.0/bits/charconv.h \
- C:/msys64/mingw64/include/c++/13.2.0/bits/basic_string.tcc
+ C:/msys64/mingw64/include/c++/13.2.0/bits/basic_string.tcc \
+ C:/msys64/mingw64/include/c++/13.2.0/cstring \
+ C:/msys64/mingw64/include/string.h \
+ C:/msys64/mingw64/include/sec_api/string_s.h

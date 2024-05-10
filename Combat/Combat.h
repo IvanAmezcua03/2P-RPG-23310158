@@ -14,6 +14,7 @@ class Combat {
 private:
     vector<Character*> participants;
     vector<Player*> partyMembers;
+    vector<Character*> originalMembers;
     vector<Enemy*> enemies;
     priority_queue<Action> actionQueue;
     void registerActions(vector<Character*>::iterator participant);
@@ -24,8 +25,10 @@ private:
     Character* getTarget(Character* attacker);
 public:
     Combat(vector<Character*> _participants);
+    vector<Character*> getoriginalMembers();
     Combat(vector<Player*> _partyMembers, vector<Enemy*> _enemies);
     Combat();
+    void heal();
     void doCombat();
     void addParticipant(Character *participant);
     string toString();

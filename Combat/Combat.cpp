@@ -16,6 +16,7 @@ bool compareSpeed(Character *a, Character *b) {
 
 Combat::Combat(vector<Character *> _participants) {
     participants = std::move(_participants);
+    originalMembers = participants;
     for(auto participant : participants) {
         if (participant->getIsPlayer()) {
             partyMembers.push_back((Player *) participant);
@@ -73,24 +74,59 @@ Character* Combat::getTarget(Character* attacker) {
 }
 
 void Combat::doCombat() {
-    cout << "Que empiece el combate!" << endl;
-    combatPrep();
-    int round = 1;
-    //Este while representa las rondas del combate
-    while (enemies.size() > 0 && partyMembers.size() > 0) {
-        cout << "\nRound " << round << endl;
-        vector<Character *>::iterator it = participants.begin();
-        registerActions(it);
-        executeActions(it);
+    bool combat = true;
+    while (combat) {
+        cout << "\nQue empiece el combate!" << endl;
+        combatPrep();
+        int round = 1;
 
-        round++;
-    }
 
-    if(enemies.empty()) {
-        cout << "Haz ganado" << endl;
-    } else {
-        cout << "Haz perdido!" << endl;
+        while (enemies.size() > 0 && partyMembers.size() > 0) {
+            cout << "\nRound " << round << endl;
+            vector<Character *>::iterator it = participants.begin();
+            registerActions(it);
+            executeActions(it);
 
+            round++;
+        }
+
+        if (enemies.empty()) {
+            cout << "Ganaste" << endl;
+        } else {
+            cout << "Perdiste!" << endl;
+        }
+
+        cout << "Quieres jugar otra vez? (s/n)" << endl;
+        char playAgain;
+        cin >> playAgain;
+
+        if(playAgain == 'n') {
+            combat = false;
+        } else {
+            participants.clear();
+            partyMembers.clear();
+            enemies.clear();
+
+
+            vector<Character*> originalParticipants = getoriginalMembers();
+            for (auto participant : originalParticipants) {
+                addParticipant(participant);
+            }
+
+
+            heal();
+
+            cout << "Quieres incrementar la dificultad? (s/n)" << endl;
+            char increaseDifficulty;
+            cin >> increaseDifficulty;
+
+            // Increase difficulty of the enemies
+            if(increaseDifficulty == 's') {
+                for(auto enemy: enemies) {
+                    enemy->moreDificult();
+                }
+            }
+        }
     }
 }
 
@@ -130,5 +166,19 @@ void Combat::registerActions(vector<Character*>::iterator participantIterator) {
         }
 
         participantIterator++;
+    }
+}
+
+
+
+vector<Character*> Combat::getoriginalMembers() {
+    return originalMembers;
+}
+
+
+void Combat::heal() {
+    vector<Character*>::iterator it;
+    for(it = participants.begin(); it != participants.end(); it++) {
+        (*it)->heal();
     }
 }

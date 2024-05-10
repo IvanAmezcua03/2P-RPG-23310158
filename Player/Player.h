@@ -19,6 +19,9 @@ private:
     int experience;
 
     void levelUp();
+    void upgradeStats();
+
+
 public:
     Player(char* _name, int _health, int _attack, int _defense, int _speed);
     void doAttack(Character *target) override;

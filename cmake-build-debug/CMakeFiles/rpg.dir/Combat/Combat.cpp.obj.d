@@ -101,6 +101,9 @@ CMakeFiles/rpg.dir/Combat/Combat.cpp.obj: \
  C:/msys64/mingw64/include/c++/13.2.0/cerrno \
  C:/msys64/mingw64/include/c++/13.2.0/bits/charconv.h \
  C:/msys64/mingw64/include/c++/13.2.0/bits/basic_string.tcc \
+ C:/msys64/mingw64/include/c++/13.2.0/cstring \
+ C:/msys64/mingw64/include/string.h \
+ C:/msys64/mingw64/include/sec_api/string_s.h \
  C:/Users/amezc/Documents/23310158_RPG\ por\ turnos_2P/2P-RPG/Player/Player.h \
  C:/Users/amezc/Documents/23310158_RPG\ por\ turnos_2P/2P-RPG/Character/Character.h \
  C:/Users/amezc/Documents/23310158_RPG\ por\ turnos_2P/2P-RPG/Enemy/Enemy.h \

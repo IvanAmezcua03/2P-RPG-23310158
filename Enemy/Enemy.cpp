@@ -77,3 +77,14 @@ Action Enemy::takeAction(vector<Player*> partyMembers) {
 
     return currentAction;
 }
+
+//DONE: Implement moreDificult
+
+void Enemy::moreDificult() {
+    health = health * 1.5;
+    attack = attack * 1.5;
+    defense = defense * 1.5;
+    speed = speed * 1.5;
+    experience = experience * 1.5;
+}
+

@@ -5,6 +5,7 @@
 #ifndef RPG_CHARACTER_H
 #define RPG_CHARACTER_H
 #include <string>
+#include <cstring>
 
 using namespace std;
 
@@ -29,6 +30,9 @@ public:
     //Incrementar la defensa un 20% solo por el turno actual
     void defend();
     void resetDefense();
+    void upgradeAttack();
+    void upgradeDefense();
+    void upgradeSpeed();
     void resetPriority();
     void givePriority();
     bool flee(Character* target);
@@ -41,6 +45,7 @@ public:
     bool getIsDefending();
     int getSpeed();
     string toString();
+    void heal();
 };
 
 

@@ -14,6 +14,15 @@ Player::Player(char* _name, int _health, int _attack, int _defense, int _speed) 
 
 void Player::doAttack(Character *target) {
     target->takeDamage(attack);
+
+    if (target->getHealth() <= 0)
+    {
+        auto enemyTarget = dynamic_cast<Enemy*>(target);
+
+        if (enemyTarget != nullptr) {
+            gainExperience(enemyTarget->getExperience());
+        }
+    }
 }
 
 void Player::takeDamage(int damage) {
@@ -36,9 +45,8 @@ void Player::takeDamage(int damage) {
 
 }
 
-void Player::levelUp() {
-    level++;
-}
+
+
 
 void Player::gainExperience(int exp) {
     experience += exp;
@@ -104,3 +112,52 @@ Action Player::takeAction(vector<Enemy*> enemies) {
 
     return currentAction;
 }
+// Level functions
+
+void Player::levelUp() {
+    level++;
+    cout << getName() << " has alcanzado el nivel ( " << level << ")" << endl;
+
+    upgradeStats();
+}
+
+void Player::upgradeStats() {
+
+    int statOption;
+    while(true) {
+        cout << "\nChoose one stat to upgrade for " << getName() << ":" << endl;
+        cout << "1. Attack" << endl << "2. Defense" << endl << "3. Speed" << endl;
+        cin >> statOption;
+
+        if (statOption > 0 && statOption < 4) {
+            break;
+        }
+        else {
+            cout << "That option doesn't exist, try again" << endl;
+        }
+    }
+
+    int prevAttack, prevDefense, prevSpeed;
+
+    switch (statOption) {
+        case 1:
+            prevAttack = getAttack();
+            upgradeAttack();
+            cout << getName() << " increased the attack of " << prevAttack << " to " << getAttack() << endl;
+            break;
+        case 2:
+            prevDefense = getDefense();
+            upgradeDefense();
+            cout << getName() << " increased the defense of " << prevDefense << " to " << getDefense() << endl;
+            break;
+        case 3:
+            prevSpeed = getSpeed();
+            upgradeSpeed();
+            cout << getName() << " increased the speed of " << prevSpeed << " to " << getSpeed() << endl;
+            break;
+        default:
+            cout << "Invalid option." << endl;
+            break;
+    }
+}
+
